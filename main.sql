@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 16, 2018 at 02:53 PM
+-- Generation Time: Jan 16, 2018 at 03:03 PM
 -- Server version: 10.1.28-MariaDB
 -- PHP Version: 7.1.11
 
@@ -27,6 +27,8 @@ SET time_zone = "+00:00";
 --
 -- Table structure for table `order`
 --
+CREATE DATABASE IF NOT EXISTS `main` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `main`;
 
 CREATE TABLE `order` (
   `item_id` int(4) NOT NULL,
