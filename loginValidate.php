@@ -75,12 +75,12 @@ else // User exists
 
 		echo "Email sent successfully";
 		
-		header("location: profile.php");
+		header("location: index.php");
 
 	}
 	else
 	{
-		$_SESSION['message'] = "You have entered wrong password, try again";
+		$_SESSION['message'] = "Invalid password entered";
 		echo "Login failed";
 		header("location: error.php");
 	}

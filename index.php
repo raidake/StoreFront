@@ -1,7 +1,8 @@
 <?php
 $employeecon=mysqli_connect("localhost","root","","employee");
 
-require_once("sessionverify.php");
+#require_once("sessionverify.php");
+require_once("db.php");
 
 if(isset($_POST["insert"])){
 	if($_POST["insert"]=="yes")
@@ -43,15 +44,13 @@ if(!preg_match("/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,20}$/", $password))
 if($error == 1){
 	goto Area1;
 }
-
+	$hash = 0;
 	$hash = password_hash($hash, PASSWORD_BCRYPT, ["cost" => 11]);
+	
+	if($crud->create($username, $hash, $fullname, $phonenum, $email, $address, $role)){
+		echo "Record inserted!";
+	}
 
-		$query=$employeecon->prepare("insert into employee(username, hash, full_Name, phone_Number, email, address, role) values('$username', '$hash', '$fullname', '$phonenum', '$email', '$address', '$role');");
-		if($query->execute())
-		{
-			echo "<center>Record Inserted!</center><br>";
-			echo $hash;
-		}
 	}
 }
 }
@@ -99,12 +98,17 @@ if($error == 1){
 	
 	$hash = 0;
 	$hash = password_hash($password, PASSWORD_BCRYPT, ["cost" => 11]);
-	
+
+	if($crud->update($username, $hash, $fullname, $phonenum, $email, $address, $role)){
+		echo "Record updated!";
+	}
+	/*
 	$query=$employeecon->prepare("update employee set username='$username' , hash='$hash', full_Name='$fullname', phone_Number='$phonenum', email='$email', address='$address', role='$role' where Employee_ID=".$_POST['id']);
 	if($query->execute())
 	{
 		echo "<center>Record Updated!</center><br>";
 	}
+	*/
 	}
 }
 }
@@ -112,11 +116,9 @@ if($error == 1){
 if(isset($_GET['operation'])){
 	if($_GET['operation']=="delete")
 	{
-		$query=$employeecon->prepare("delete from employee where Employee_ID=".$_GET['id']);
-		if($query->execute())
-		{
-			echo "<center>Record Deleted!</center><br>";
-		}
+	if($crud->delete($_GET['id'])){
+		echo "Record deleted!";
+	}
 	}
 }
 ?>
@@ -166,38 +168,7 @@ if(isset($_GET['operation'])){
 <?php
 Area1:
 // Close connection
-$query=$employeecon->prepare("select employee_ID, username, hash, full_Name, phone_Number, email, address, role from employee");
-$query->execute();
-$query->bind_result($id, $username, $hash, $fullname, $phonenum, $email, $address, $role);
-echo "<table align='center' border='1'>";
-echo "<tr>";
-echo "<th>Id</th>";
-echo "<th>Username</th>";
-echo "<th>Hash</th>";
-echo "<th>Fullname</th>";
-echo "<th>Phonenum</th>";
-echo "<th>Email</th>";
-echo "<th>Address</th>";
-echo "<th>Role</th>";
-echo "</tr>";
-while($query->fetch())
-{
-	echo "<tr>";
-	echo "<td>".$id."</td>";
-	echo "<td>".$username."</td>";
-	echo "<td>".$hash."</td>";
-	echo "<td>".$fullname."</td>";
-	echo "<td>".$phonenum."</td>";
-	echo "<td>".$email."</td>";
-	echo "<td>".$address."</td>";
-	echo "<td>".$role."</td>";
-	echo "<td><a href='edit.php?operation=edit&id=".$id."&username=".$username."&hash=".$hash."&fullname=".$fullname."&phonenum=".$phonenum."&email=".$email."&address=".$address."&role=".$role."'>edit</a></td>";
-	echo "<td><a href='index.php?operation=delete&id=".$id."'>delete</a></td>";
-	echo "</tr>";	
-	
-}
-echo "</table>";
-
+$crud->getRows();
 
 ?>
 </body>
