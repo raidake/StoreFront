@@ -64,7 +64,7 @@ else // User exists
 		
 		$email=$user['email'];
 		$crud->sendOTP($email, $username);
-
+		require_once('loginsuccessful.php');
 		header("location: otplogin.php");
 
 	}
@@ -72,6 +72,7 @@ else // User exists
 	{
 		$_SESSION['message'] = "Invalid password entered";
 		echo "Login failed";
+		require_once('loginfailure.php');
 		header("location: error.php");
 	}
 } 
