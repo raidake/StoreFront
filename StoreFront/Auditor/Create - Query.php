@@ -2,7 +2,7 @@
 <body>
 <div>
 <ul>
-	<a href="../Project/homepage.php"><button>Back</button></a> <!-- The [ back ] button to return to homepage-->
+	<a href="../Storefront/Auditor/homepage.php"><button>Back</button></a> <!-- The [ back ] button to return to homepage-->
 <ul>
 	<h1 style="text-align:center"> Remark Creation : </h1> <!-- create a remark for the specific log ID-->
 	<form action="C.php" method="post">

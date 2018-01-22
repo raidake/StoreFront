@@ -10,7 +10,7 @@
 <ul>
 	<!-- button that leads to "Create - Query.php" which reads logs from audit_logs tablethat do not have a remark 
 	and allows the user to create a remark for that log																-->
-	<a href="../Project/Create - Query.php"><button>Create</button></a>
+	<a href="../Storefront/Auditor/Create - Query.php"><button>Create</button></a>
 <ul>
 </h2>
 <br>
@@ -19,7 +19,7 @@
 <ul>
 	<!-- button that leads to "readupdatedelete.php" which reads logs from the audit_logs table that already have a
 	 remark and allows	the user to update or delete the remark 													-->
-	<a href="../Project/readupdatedelete.php"><button>Check</button></a>
+	<a href="../Storefront/Auditor/readupdatedelete.php"><button>Check</button></a>
 <ul>
 </h2>
 <br>
@@ -27,7 +27,7 @@
 <h2>Check all existing logs<br>
 <ul>
 	<!-- button that leads to "readonly.php" which reads all the logs in the audit_logs table			 -->
-	<a href="../Project/readonly.php"><button>Check</button></a>
+	<a href="../Storefront/Auditor/readonly.php"><button>Check</button></a>
 <ul>
 </h2>
 <br>

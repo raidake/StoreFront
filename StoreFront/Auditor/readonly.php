@@ -5,7 +5,7 @@ $connect=mysqli_connect("localhost","root","","auditor database");
 <html>
 <body>
 <ul>
-	<a href="../Project/homepage.php"><button>Back</button></a> <!-- The [ back ] button to return to homepage-->
+	<a href="../Storefront/Auditor/homepage.php"><button>Back</button></a> <!-- The [ back ] button to return to homepage-->
 <ul>
 <b><center>Audit Logs</center></b>
 

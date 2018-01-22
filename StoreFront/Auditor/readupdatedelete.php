@@ -30,7 +30,7 @@ if(isset($_GET['operation'])){
 <html>
 <body>
 <ul>
-	<a href="../Project/homepage.php"><button>Back</button></a> <!-- The [ back ] button to return to homepage-->
+	<a href="../Storefront/Auditor/homepage.php"><button>Back</button></a> <!-- The [ back ] button to return to homepage-->
 <ul>
 <b><center>Audit Logs</center></b>
 
