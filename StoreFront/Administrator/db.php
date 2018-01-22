@@ -1,9 +1,9 @@
 <?php
 
-$DB_host = "localhost";
-$DB_user = "root";
-$DB_pass = "";
-$DB_name = "employee";
+$DB_host = "fdb19.awardspace.net";
+$DB_user = "2590948_employee";
+$DB_pass = "mewk2018!";
+$DB_name = "2590948_employee";
 
 
 try
@@ -16,8 +16,13 @@ catch(PDOException $e)
  echo $e->getMessage();
 }
 
-include_once 'crud.php';
+include_once 'pdo.php';
 
 $crud = new crud($DB_con);
+
+$mysqli = mysqli_connect("localhost","root","","main"); //connect to database
+if (!$mysqli){
+	die('Could not connect: ' . mysqli_connect_errno()); //return error is connect fail
+}
 
 ?>

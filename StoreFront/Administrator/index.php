@@ -1,5 +1,5 @@
 <?php
-$employeecon=mysqli_connect("localhost","root","","employee");
+$employeecon=mysqli_connect("localhost","root","","2590948_employee");
 
 #require_once("sessionverify.php");
 require_once("db.php");
