@@ -15,8 +15,8 @@ catch(PDOException $e)
  echo $e->getMessage();
 }
 
-include_once 'loginpdo.php';
+include_once 'logspdo.php';
 
-$crud = new crud($DB_con);
+$logs = new logs($DB_con);
 
 ?>

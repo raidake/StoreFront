@@ -1,5 +1,5 @@
 <?php
-class crud
+class logs
 {
  private $db;
  
@@ -8,7 +8,7 @@ class crud
   $this->db = $DB_con;
  }
  
- public function loginlogs($date,$time,$logging)
+ public function createLogs($date,$time,$logging)
  {
   try
   {
