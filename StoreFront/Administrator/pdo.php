@@ -94,30 +94,19 @@ echo "</table>";
  
 
 
-public function sendOTP($email){
-	//Generate OTP and send to user email
-	require_once("mail_function.php");		
-	$otpid=mt_rand(1000000, 9999999);
-	
-	try
-  {
-   $stmt = $this->db->prepare("update employee set otp='$otpid' WHERE username='$username');");
-   $stmt->execute();
-  }
-  catch(PDOException $e)
-  {
-   echo $e->getMessage(); 
-  }
+public function sendOTP($email, $name){
+$otpid=mt_rand(1000000,9999999);
+$_SESSION['otpid']=$otpid;
 
-	$to      = '$email';
-	$subject = 'StoreFront One Time Password';
-	$message = "Your OTP is '$otpid'";
-	$headers = 'From: storefront@storefront.dx.am' . "\r\n" .
-    'Reply-To: storefront@storefront.dx.am' . "\r\n" .
-    'X-Mailer: PHP/' . phpversion();
+ $stmt = $this->db->prepare("update employee set otp='$otpid' where email='$email'");
+ $stmt->execute();
 
-	if(mail($to, $subject, $message, $headers)){
-		$_SESSION['message']="Mail sent successfully.";
-	};
+if(mail('$email', 'Storefront OTP','Your OTP for '.'$name'. ' is '.'$otpid')){
+		 #header("location: otplogin.php");
+	 }
+	 else{
+		 $_SESSION['message']="OTP failed. Please check email exists";
+		 header("location: error.php");
+	 }
 }
 }

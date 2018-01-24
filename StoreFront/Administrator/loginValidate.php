@@ -63,16 +63,23 @@ else // User exists
 		$mysqli->query("UPDATE employee SET captcha='$capid' WHERE username='$username'");
 		
 		$email=$user['email'];
-		$crud->sendOTP($email, $username);
-		require_once('loginsuccessful.php');
-		header("location: otplogin.php");
+		$otpid=mt_rand(1000000,9999999);
 
+		$query=$mysqli->prepare("update employee set otp='$otpid' where email='$email'");
+		$query->execute();
+		if(mail($email, 'Storefront OTP','Your OTP is '.$otpid)){
+		 header("location: otplogin.php");
+	 }
+	 else{
+		 $_SESSION['message']="OTP failed. Please check email exists";
+		 header("location: error.php");
+	 }
+	 
 	}
 	else
 	{
 		$_SESSION['message'] = "Invalid password entered";
 		echo "Login failed";
-		require_once('loginfailure.php');
 		header("location: error.php");
 	}
 } 

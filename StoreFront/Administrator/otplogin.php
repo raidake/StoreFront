@@ -1,10 +1,24 @@
 <html>
 
 <?php
+require_once("db.php");
+if(isset($_POST['submit'])){
+	session_start();
+	$username=$_SESSION['username'];
+	$query="SELECT otp FROM employee WHERE username='$username'";
+	$result=$mysqli->query($query);
 
-if(isset($_GET['submit'])){
-	include_once("crud.php");
-	$crud->checkOTP($_POST['otp'];
+if($result->num_rows > 0){
+while( $row=$result->fetch_assoc())
+	if($_POST['otp']==$row['otp']){
+		$_SESSION['otp']=$dbotp;
+		header("location:index.php");
+		}
+	
+	else{
+		echo "OTP failed. Please try again.";
+	}
+}
 }
 
 ?>
