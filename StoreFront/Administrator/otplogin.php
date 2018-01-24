@@ -11,7 +11,7 @@ if(isset($_POST['submit'])){
 if($result->num_rows > 0){
 while( $row=$result->fetch_assoc())
 	if($_POST['otp']==$row['otp']){
-		$_SESSION['otp']=$dbotp;
+		$_SESSION['otp']=$_POST['otp'];
 		header("location:index.php");
 		}
 	
