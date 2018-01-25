@@ -12,9 +12,9 @@ $logging = "Username: $username , failed login at, time: $timestamp";
 
 
 if ($logs->createLogs($date,$time,$logging)){  //execute query
-  echo "Query executed.";
+
 }else{
-  echo "Error executing query.";
+  echo "Log error";
 }
 
 ?>
