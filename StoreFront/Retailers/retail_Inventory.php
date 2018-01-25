@@ -129,17 +129,8 @@ echo "<th>Delete</th>";
 echo "</tr>";
 
 $query = "SELECT * FROM retail_items";
-$records_per_page=3;
-$newquery = $crud-> paging($query,$records_per_page);
-$crud->dataview($newquery);
+$crud->dataview($query);
 ?>
-	<tr>
-			<td colspan="8" align="center">
-				<div class="pagination-wrap">
-					<?php $crud->paginglink($query,$records_per_page); ?>
-				</div>
-			</td>
-	</tr>
 </table>
 
 </body>
