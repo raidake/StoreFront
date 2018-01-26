@@ -2,8 +2,12 @@
 /*User login process, checks if user exists and password is correct */
 
 // Escape email to protect against SQL injections
+$mysqli = mysqli_connect("localhost","root","","main"); //connect to database
+if (!$mysqli){
+	die('Could not connect: ' . mysqli_connect_errno()); //return error is connect fail
+}
 $username = $mysqli->escape_string($_POST['username']);
-$result = $mysqli->query("SELECT * FROM employee WHERE username='$username'");
+$result = $mysqli->query("SELECT * FROM retailers WHERE username='$username'");
 require_once('recaptchalib.php');
 
 if ( $result->num_rows == 0 ) // User doesn't exist
@@ -43,11 +47,7 @@ else // User exists
 
 		$_SESSION['username'] = $user['username'];
 		$_SESSION['hash'] = $user['hash'];
-		$_SESSION['company_Name'] = $user['company_Name'];
-		$_SESSION['email'] = $user['email'];
-		$_SESSION['phone_Number'] = $user['phone_Number'];
-		$_SESSION['address'] = $user['address'];
-		$_SESSION['description'] = $user['description'];
+		$_SESSION['retails_ID']=$user['retails_ID'];
 #		$_SESSION['email'] = $user['email'];
 
 		// This is how we'll know the user is logged in
@@ -60,21 +60,15 @@ else // User exists
 		$_SESSION['captchaid']=$capid;
 		
 		$mysqli->query("UPDATE employee SET captcha_verify='$capid' WHERE username='$username'");
-		
-		//Generate OTP and send to user email
-#		require_once("mail_function.php");
-		
-		
-#		$otpid=mt_rand(1000000, 9999999);
-#		$_SESSION['otpid']=$otpid;
-#		$to = $user['email'];
-#		$subject = "E-Commerce OTP";
-#		$message = 'Your OTP for E-Commerce website login user ' . $username . ' is ' . $otpid;
-#		$headers = 'From: keith_teo@outlook.sg';
 
-#		echo "Email sent successfully";
-		
-		header("location: profile.php");
+		$email=$user['email'];
+		$otpid=mt_rand(1000000,9999999);
+		$query=$mysqli->prepare("update retailers set otp='$otpid' where email='$email'");
+		$query->execute();
+		if(mail($email, 'Storefront OTP','Your OTP is '.$otpid)){
+		 header("location: otplogin.php");
+	 }
+		header("location: otplogin.php");
 
 	}
 	else
