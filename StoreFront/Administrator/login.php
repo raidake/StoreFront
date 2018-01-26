@@ -1,5 +1,5 @@
 <?php
-require 'db.php';
+
 session_start();
 ?>
 
@@ -15,13 +15,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 {
 	if (isset($_POST['login']))
 	{
-		require 'loginValidate.php';
+		require_once 'loginValidate.php';
 	}
 }
 ?>
 
 <body>
-<form action="login.php" method="post" autocomplete="off">
+<form action="login.php" method="POST" autocomplete="off">
 
 <label>Username: </label>
 <input type="username" name="username" autocomplete="off">

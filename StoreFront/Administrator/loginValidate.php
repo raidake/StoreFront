@@ -1,6 +1,6 @@
 <?php
 /*User login process, checks if user exists and password is correct */
-
+$mysqli=mysqli_connect("localhost","root","","employee");
 // Escape email to protect against SQL injections
 $username = $mysqli->escape_string($_POST['username']);
 $result = $mysqli->query("SELECT * FROM employee WHERE username='$username'");
@@ -43,29 +43,17 @@ else // User exists
 
 		$_SESSION['username'] = $user['username'];
 		$_SESSION['hash'] = $user['hash'];
-#		$_SESSION['last_Name'] = $user['last_Name'];
-#		$_SESSION['gender'] = $user['gender'];
-#		$_SESSION['age'] = $user['age'];
-#		$_SESSION['birthday'] = $user['birthday'];
-#		$_SESSION['address'] = $user['address'];
-#		$_SESSION['contact'] = $user['contact'];
-#		$_SESSION['email'] = $user['email'];
-
-		// This is how we'll know the user is logged in
-		
-		$_SESSION['logged_in'] = true;
-		$_SESSION['active'] = 0;
 		
 		//Generate CAPTCHA session id and update database (unset captcha value is 0)
 		$capid=mt_rand(1000000,9999999);
 		$_SESSION['captchaid']=$capid;
 		
-		$mysqli->query("UPDATE employee SET captcha='$capid' WHERE username='$username'");
+		$mysqli->query("UPDATE auditor SET captcha='$capid' WHERE username='$username'");
 		
 		$email=$user['email'];
 		$otpid=mt_rand(1000000,9999999);
 
-		$query=$mysqli->prepare("update employee set otp='$otpid' where email='$email'");
+		$query=$mysqli->prepare("update auditor set otp='$otpid' where email='$email'");
 		$query->execute();
 		if(mail($email, 'Storefront OTP','Your OTP is '.$otpid)){
 		 header("location: otplogin.php");
@@ -74,7 +62,6 @@ else // User exists
 		 $_SESSION['message']="OTP failed. Please check email exists";
 		 header("location: error.php");
 	 }
-	 
 	}
 	else
 	{
