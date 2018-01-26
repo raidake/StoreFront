@@ -3,9 +3,13 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 25, 2018 at 10:01 AM
+-- Generation Time: Jan 26, 2018 at 06:04 AM
 -- Server version: 10.1.28-MariaDB
 -- PHP Version: 7.1.10
+
+
+CREATE DATABASE MAIN;
+
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -21,8 +25,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `main`
 --
-CREATE DATABASE IF NOT EXISTS `main` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `main`;
 
 -- --------------------------------------------------------
 
@@ -77,12 +79,12 @@ CREATE TABLE `customers` (
 --
 
 INSERT INTO `customers` (`user_id`, `first_Name`, `last_Name`, `gender`, `age`, `birthday`, `address`, `contact`, `email`, `hash`, `active`, `captcha_verify`, `otp_verify`) VALUES
-(1, 'Jackie', 'Chan', 'Male', 54, '2018-01-08', 'Hong Kong', 91837481, 'jacki_chan@gmail.com', '$2y$11$fmIjYcIexiezavMY5aclsuwL0BjytBSKbGCTi.g/U6jzg.juDVaRO', 1, '', 0),
-(2, 'Jackie', 'Chan', 'Male', 54, '2018-01-08', 'Hong Kong', 91837481, 'jacki_chan@gmail.com', '$2y$11$fmIjYcIexiezavMY5aclsuwL0BjytBSKbGCTi.g/U6jzg.juDVaRO', 1, '', 0),
-(3, 'Cackie ', 'Jhan', 'Male', 999, '2018-01-10', 'China', 98412516, 'cackie@gmail.com', '$2y$11$tvUO7M4RBKh07TLPvNv00elmFBUn2leOcbpnkj4/CvEGheZfZTIza', 1, '0', 0),
-(4, 'Cackie ', 'Jhan', 'Male', 999, '2018-01-10', 'China', 98412516, 'cackie@gmail.com', '$2y$11$tvUO7M4RBKh07TLPvNv00elmFBUn2leOcbpnkj4/CvEGheZfZTIza', 1, '0', 0),
-(5, 'Blackie ', 'Chan', 'Female', 111, '2018-01-17', 'Taiwan', 67215261, 'blackie@gmail.com', '$2y$11$Q3A4CeppOZ4yMhGJpxm1jOY6PwMx1eMr6qyuGBw0hW9R4Nogw0mcK', 1, '0', 0),
-(6, 'Mackie', 'Bhan', 'Female', 431, '2018-01-11', 'Singapore', 67215265, 'mackie@live.com', '$2y$11$tB24EsaEmuOMqibqq9/SROaJpmRH4DlGcXtZgaug.UhEvQdz/gRKe', 1, '0', 0);
+(1, 'Jackie', 'Chan', 'Male', 54, '2018-01-08', 'Hong Kong', 91837481, 'keith_teo@outlook.sg', '$2y$11$yLBU6UapqZsl9dJkliUb4OYv.taWWd8WM5ZHK6tiGLRIV8/GSSLny', 1, '', 0),
+(2, 'Jackie', 'Chan', 'Male', 54, '2018-01-08', 'Hong Kong', 91837481, 'jacki_chan@gmail.com', '$2y$11$ZDqhXjRdKXH4.A6e6Y51l.f1VKDarnwpK0IpNGgyV2tiy.fqhWTRe', 1, '', 0),
+(3, 'Cackie ', 'Jhan', 'Male', 999, '2018-01-10', 'China', 98412516, 'cackie@gmail.com', '$2y$11$HBAQXdQvnX9/y7VKtl22L.m5G.vPpsxLjK3KVsyFogAQv1u7R09uy', 1, '0', 0),
+(4, 'Cackie ', 'Jhan', 'Male', 999, '2018-01-10', 'China', 98412516, 'cackie@gmail.com', '$2y$11$VybUD8O/m2EM.88wnb1yzeVSaSIWGpY3vhW2BGoBum9QoUOoBlDTW', 1, '0', 0),
+(5, 'Blackie ', 'Chan', 'Female', 111, '2018-01-17', 'Taiwan', 67215261, 'blackie@gmail.com', '$2y$11$N/uJtpDqyWkm0LkmPV5lveegDE1WdR3UElPcypO1Lq02rkeRqxJXy', 1, '0', 0),
+(6, 'Mackie', 'Bhan', 'Female', 431, '2018-01-11', 'Singapore', 67215265, 'mackie@live.com', '$2y$11$rUN3Rw2jyieeDYGiuy9jueQGsTTqcybfNkaqoh8mwdgWbLJMQB65a', 1, '0', 0);
 
 -- --------------------------------------------------------
 
@@ -109,12 +111,12 @@ CREATE TABLE `retailers` (
 --
 
 INSERT INTO `retailers` (`retails_ID`, `username`, `hash`, `company_Name`, `e-mail`, `phone_Number`, `address`, `description`, `active`, `captcha_verify`, `otp_verify`) VALUES
-(1, 'drugdealer', '$2y$11$hO2QEjIdJlxxHBg2H30jFep8.00seuD3vinsDcdJt/rWmmz8135ni', 'Legal Drugs', 'idontsellweed@ido.com', 84206969, 'Backstreet Boys Avenue 2', 'We totally sell legal drugs', 0, '', 0),
-(6, 'CoolMeister', '$2y$11$8W98sHq0/VlKrCQgiiig7O6TLb.uDMssbmn/fNz/46cbfXswTR9aO', 'Cool Hats Co.', 'coomeister69@gmail.com', 81882341, 'Paya Lebar MRT Station', 'We sell cool hats to people.', 0, '', 0),
-(7, 'Alfrodo', '$2y$11$fHcEVe8TO7Xjfhmbnka1nOjoLJLf/o.XJ.OMC82tb5CBhFXJnG2o2', 'Gun Shop', 's0m3gay@cupid.com', 99994444, 'Simei MRT Station', ' We sell Banks', 0, '', 0),
-(8, 'R', '$2y$11$FH4hUqTZmA.imu3rOw6dae6QofEfiJGEW1.ymtRjxEBTl653saV0W', 'RR', 'R@R.c', 12345678, '2 R A', 'qwertyu', 0, '', 0),
-(9, 'weifeng', '$2y$11$cWN4VLP1gcqybm1niLtbqed7wMlqb0VjYrIvnJAw3XKwAKyMps3.K', 'Wei Feng and Co.', 'weifeng420@gmail.net', 93322211, 'Hougangragoon ave 30', 'A small business', 0, '', 0),
-(10, 'ethanheng', '$2y$11$mIjTulF8qia6Nu2pi49nF.EyMUavvyJzXlWbWPkTyLPGRMv29il.G', 'Doge Memes Co.', 'ethanheng@outlook.com', 93321554, 'Serangoon Avenue 5', 'We sell Doge.', 0, '', 0);
+(1, 'drugdealer', '$2y$11$0CzcR5h0f5Ql/dbJIe7xLO2aDoNNV3JI/4YEhGXwqw.7U4bIr1Q/C', 'Legal Drugs', 'idontsellweed@ido.com', 84206969, 'Backstreet Boys Avenue 2', 'We totally sell legal drugs', 0, '', 0),
+(6, 'CoolMeister', '$2y$11$Jct5Yks34hCOpSJoQakFouJVb3vmxgUgCE6/zmZdoQpXcK2d5AzOK', 'Cool Hats Co.', 'coomeister69@gmail.com', 81882341, 'Paya Lebar MRT Station', 'We sell cool hats to people.', 0, '', 0),
+(7, 'Alfrodo', '$2y$11$AHCxHbbC6PXzg8rVdoTNBeFwN2nmjZeeCbkXM9tToNJkIf1GRFKgK', 'Gun Shop', 's0m3gay@cupid.com', 99994444, 'Simei MRT Station', ' We sell Banks', 0, '', 0),
+(8, 'R', '$2y$11$K41CQFjn1sE8wjIAFBydt.viAqNNUtmCzRnwYNGARtlHrurv9Drp6', 'RR', 'R@R.c', 12345678, '2 R A', 'qwertyu', 0, '', 0),
+(9, 'weifeng', '$2y$11$dDEK2ASfr53DLRi2EmKWxuGwHOBJHviG7Ovz/yAKj9fS9ymaM6ivO', 'Wei Feng and Co.', 'weifeng420@gmail.net', 93322211, 'Hougangragoon ave 30', 'A small business', 0, '', 0),
+(10, 'ethanheng', '$2y$11$EdQEz4j0ljeguoNIyqO6bu8j50aTFNMvfeTKvP8k/Z/CE0q.zE6Ae', 'Doge Memes Co.', 'ethanheng@outlook.com', 93321554, 'Serangoon Avenue 5', 'We sell Doge.', 0, '', 0);
 
 -- --------------------------------------------------------
 
