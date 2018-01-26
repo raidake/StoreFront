@@ -11,7 +11,7 @@ if(isset($_POST["insert"])){
 		$folder="/xampp/htdocs/StoreFront/Retailers/images/";
 		
 		move_uploaded_file($_FILES["image"]["tmp_name"], "$folder".$_FILES["image"]["name"]);
-		$image = "./images/".$upload_image;
+		$image = "/StoreFront/Retailers/images/".$upload_image;
 		
 		if($crud->createItem($retails_ID,$itemname,$stock,$cost,$desc,$image))
 		{
