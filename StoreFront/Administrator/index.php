@@ -1,7 +1,6 @@
 <?php
-$employeecon=mysqli_connect("localhost","root","","2590948_employee");
 
-#require_once("sessionverify.php");
+require_once("sessionverify.php");
 require_once("db.php");
 
 if(isset($_POST["insert"])){
@@ -48,7 +47,7 @@ if($error == 1){
 	$hash = password_hash($hash, PASSWORD_BCRYPT, ["cost" => 11]);
 	
 	if($crud->create($username, $hash, $fullname, $phonenum, $email, $address, $role)){
-		require_once("insertlogs.php");
+		require_once('insertlogs.php');
 		echo "Record inserted!";
 	}
 
@@ -101,7 +100,7 @@ if($error == 1){
 	$hash = password_hash($password, PASSWORD_BCRYPT, ["cost" => 11]);
 
 	if($crud->update($username, $hash, $fullname, $phonenum, $email, $address, $role)){
-		require_once("updatelogs.php");
+		require_once('updatelogs.php');
 		echo "Record updated!";
 	}
 	/*
@@ -119,7 +118,7 @@ if(isset($_GET['operation'])){
 	if($_GET['operation']=="delete")
 	{
 	if($crud->delete($_GET['id'])){
-		require_once("deletelogs.php");
+		require_once('deletelogs.php');
 		echo "Record deleted!";
 	}
 	}
