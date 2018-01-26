@@ -48,6 +48,8 @@ else // User exists
 		$_SESSION['username'] = $user['username'];
 		$_SESSION['hash'] = $user['hash'];
 		$_SESSION['retails_ID']=$user['retails_ID'];
+		//Set session to tell account is customer or retailer
+		$_SESSION['accounttype']='retailer';
 #		$_SESSION['email'] = $user['email'];
 
 		// This is how we'll know the user is logged in
