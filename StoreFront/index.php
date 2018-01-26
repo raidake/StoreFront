@@ -1,3 +1,7 @@
+<?php
+include_once './Retailers/dbconfig.php';
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,12 +10,13 @@
 	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 	<style>
 header, footer {
-    padding: 1em;
+    padding: 20px;
     color: white;
     background-color: black;
     clear: left;
     text-align: center;
 }
+
 button {
 	width: 30%;
 	background-color: #45a049;
@@ -40,36 +45,21 @@ div.layout2 {
 	height: 30px;
 }
 div.layout3 {
-	float: left;
-	max-width: 160px;
-	margin: 0;
-	padding: 1em;
+	display: block;
+	float:left;
+	max-height: 100px;
+	max-width: 200px;
+	padding: 20px;
 }
 
 div.layout4 {
-	margin-left: 200px;
+	display: block;
+	margin-left: 220px;
 	border-left: 1px solid gray;
-	padding: 2em;
-	overflow: hidden;
-	height: 150px;
-	margin-top: 50px;
+	padding: 40px;
+	margin-top: 40px;
 }
-div.layout5 {
-	margin-left: 200px;
-	border-left: 1px solid gray;
-	padding: 2em;
-	overflow: hidden;
-	height: 150px;
-	margin-top: -10px;
-}
-div.layout6 {
-	margin-left: 200px;
-	border-left: 1px solid gray;
-	padding: 2em;
-	overflow: hidden;
-	height: 150px;
-	margin-top: -10px;
-}
+
 input[type=text] {
 	width: 130px;
     box-sizing: border-box;
@@ -115,7 +105,7 @@ label {
         </header>
       	<div class="w3-container">
 		<center><a href="/StoreFront/Customers/register.php"><input type="submit" value="Register as Customers"></a></center>
-		<center><a href="/StoreFront/Retailers/RetailerRegister.php"><input type="submit" value="Register as Retailers"></a></center>
+		<center><a href="/StoreFront/retailers/RetailerRegister.php"><input type="submit" value="Register as Retailers"></a></center>
       	</div>
       		<footer class="w3-container w3-teal">
         	<p>Thank You!</p>
@@ -151,36 +141,49 @@ label {
   				<center><input type="text" name="search" placeholder="Search"></center>
   			</form>
   		</div>
-
-		<div class="layout3">
-		<picture>
-			<!-- They are 3 fields for this, Item Picture, Name and Cost-->
-		<img src="http://cityscoop.us/bocaratonfl-signs/files/2017/05/Storefront-Signs-Graphics-Sign-Partners004.jpg" alt="item1">
-		<img src="http://www.methoddesign.com/wp-content/uploads/2010/07/PTN-STOREFRONT1.jpg" alt="item2">
-		<img src="http://www.carlsons-stores.com/g-storefront4.jpg" alt="item3">
-		</picture>
-	</div>
-
-	<div class="layout4">
-		<!-- Name & Item Cost -->
-		<label><b>Item Name:</b></label>
-		<br></br>
-		<label><b>Item Cost:</b></label>
-	</div>
-
-	<div class="layout5">
-		<!-- Name & Item Cost -->
-		<label><b>Item Name:</b></label>
-		<br></br>
-		<label><b>Item Cost:</b></label>
-	</div>
-
-	<div class="layout6">
-		<!-- Name & Item Cost -->
-		<label><b>Item Name:</b></label>
-		<br></br>
-		<label><b>Item Cost:</b></label>
-	</div>
+	<?php
+		
+		$stmt = $DB_con->prepare("select * from retail_items");
+		$stmt->execute();
+		
+		if($stmt->rowCount() > 0)
+		{
+			$array = array();
+			while($row=$stmt->fetch(PDO::FETCH_ASSOC))
+			{
+				array_push($array, $row['item_ID']);
+			}
+			$rand_keys = array_rand($array, 3);
+			for($i = 0; $i < 3; $i++)
+			{
+				$key = $array[$rand_keys[$i]];
+				if(print($row['active']) == 1)
+				{
+					echo "<br>";
+					extract($crud->getID($key));
+					
+					?>
+						<div class="layout3">
+							<img src="<?php echo $image; ?>">
+						</div>
+						<div class="layout4">
+							<label><b>Item Name:</b></label>
+							<a href="./Retailers/retailItem.php?item_id=<?php echo $item_ID; ?>"><?php echo $item_Name; ?></a>
+							<br>
+							<label><b>Item Cost:</b></label>
+							<?php echo $item_Cost; ?>
+						</div>
+					<?php
+				}
+				
+	
+			}
+			
+			
+		}
+		
+	?>
+	<br> <br>
 	<footer>Copyright &copy; StoreFront.com</footer>
 	</div>
 </body>
