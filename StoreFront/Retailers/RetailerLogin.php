@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 ?>
 
 <body>
-<form action="login.php" method="post" autocomplete="off">
+<form action="RetailerLogin.php" method="post" autocomplete="off">
 
 <label>Username: </label>
 <input type="username" name="username" autocomplete="off">

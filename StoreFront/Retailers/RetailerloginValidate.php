@@ -1,6 +1,5 @@
 <?php
 /*User login process, checks if user exists and password is correct */
-
 // Escape email to protect against SQL injections
 $mysqli = mysqli_connect("localhost","root","","main"); //connect to database
 if (!$mysqli){
@@ -50,7 +49,7 @@ else // User exists
 		$_SESSION['retails_ID']=$user['retails_ID'];
 		//Set session to tell account is customer or retailer
 		$_SESSION['accounttype']='retailer';
-#		$_SESSION['email'] = $user['email'];
+		$_SESSION['email'] = $user['e-mail'];
 
 		// This is how we'll know the user is logged in
 		
@@ -61,16 +60,17 @@ else // User exists
 		$capid=mt_rand(1000000,9999999);
 		$_SESSION['captchaid']=$capid;
 		
-		$mysqli->query("UPDATE employee SET captcha_verify='$capid' WHERE username='$username'");
-
-		$email=$user['email'];
+		$mysqli->query("UPDATE retailers SET `captcha_verify`='$capid' WHERE username='$username'");
+		
+		$email=0;
+		$email=$user['e-mail'];
 		$otpid=mt_rand(1000000,9999999);
-		$query=$mysqli->prepare("update retailers set otp='$otpid' where email='$email'");
+		$_SESSION['otpid']=$otpid;
+		$query=$mysqli->prepare("update retailers set `otp_verify`='$otpid' where username='$username'");
 		$query->execute();
 		if(mail($email, 'Storefront OTP','Your OTP is '.$otpid)){
 		 header("location: otplogin.php");
 	 }
-		header("location: otplogin.php");
 
 	}
 	else
