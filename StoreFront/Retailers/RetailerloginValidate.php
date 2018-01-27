@@ -65,7 +65,7 @@ else // User exists
 		$email=0;
 		$email=$user['e-mail'];
 		$otpid=mt_rand(1000000,9999999);
-		$_SESSION['otpid']=$otpid;
+
 		$query=$mysqli->prepare("update retailers set `otp_verify`='$otpid' where username='$username'");
 		$query->execute();
 		if(mail($email, 'Storefront OTP','Your OTP is '.$otpid)){
