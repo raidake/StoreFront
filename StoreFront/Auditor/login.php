@@ -1,5 +1,5 @@
 <?php
-require 'mdb.php';
+require 'db.php';
 #session_start();
 ?>
 

@@ -2,6 +2,7 @@
 /*User login process, checks if user exists and password is correct */
 
 // Escape email to protect against SQL injections
+$mysqli=mysqli_connect("localhost","root","","employee");
 $username = $mysqli->escape_string($_POST['username']);
 $result = $mysqli->query("SELECT * FROM auditor WHERE username='$username'");
 require_once('recaptchalib.php');
@@ -50,12 +51,26 @@ else // User exists
 		
 		$mysqli->query("UPDATE auditor SET captcha='$capid' WHERE username='$username'");
 		
+		$email=$user['email'];
 		header("location: homepage.php");
+		/*
+		$otpid=mt_rand(1000000,9999999);
 
+		$query=$mysqli->prepare("update auditor set otp='$otpid' where email='$email'");
+		$query->execute();
+		if(mail($email, 'Storefront OTP','Your OTP is '.$otpid)){
+		 header("location: otplogin.php");
+	 }
+	 
+	 else{
+		 $_SESSION['message']="OTP failed. Please check email exists";
+		 header("location: error.php");
+	 }
+	 */
 	}
 	else
 	{
-		$_SESSION['message'] = "Invalid password entered";
+		$_SESSION['message'] = $user['hash'];
 		echo "Login failed";
 		header("location: error.php");
 	}
