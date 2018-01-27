@@ -3,10 +3,10 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 27, 2018 at 07:46 AM
--- Server version: 10.1.28-MariaDB
--- PHP Version: 7.1.10
-CREATE DATABASE main;
+-- Generation Time: Jan 27, 2018 at 04:26 PM
+-- Server version: 10.1.30-MariaDB
+-- PHP Version: 7.2.1
+
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
 START TRANSACTION;
@@ -21,6 +21,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `main`
 --
+CREATE DATABASE IF NOT EXISTS `main` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `main`;
 
 -- --------------------------------------------------------
 
@@ -75,8 +77,8 @@ CREATE TABLE `customers` (
 --
 
 INSERT INTO `customers` (`user_id`, `first_Name`, `last_Name`, `gender`, `age`, `birthday`, `address`, `contact`, `email`, `hash`, `active`, `captcha_verify`, `otp_verify`) VALUES
-(1, 'Jackie', 'Chan', 'Male', 54, '2018-01-08', 'Hong Kong', 91837481, 'keith_teo@outlook.sg', '$2y$11$yLBU6UapqZsl9dJkliUb4OYv.taWWd8WM5ZHK6tiGLRIV8/GSSLny', 1, '', 3300535),
-(2, 'Jackie', 'Chan', 'Male', 54, '2018-01-08', 'Hong Kong', 91837481, 'marcus_goh25@hotmail.com', '$2y$11$ZDqhXjRdKXH4.A6e6Y51l.f1VKDarnwpK0IpNGgyV2tiy.fqhWTRe', 1, '', 8833214),
+(1, 'Jackie', 'Chan', 'Male', 54, '2018-01-08', 'Hong Kong', 91837481, 'keith_teo@outlook.sg', '$2y$11$yLBU6UapqZsl9dJkliUb4OYv.taWWd8WM5ZHK6tiGLRIV8/GSSLny', 1, '', 0),
+(2, 'Jackie', 'Chan', 'Male', 54, '2018-01-08', 'Hong Kong', 91837481, 'jacki_chan@gmail.com', '$2y$11$ZDqhXjRdKXH4.A6e6Y51l.f1VKDarnwpK0IpNGgyV2tiy.fqhWTRe', 1, '', 0),
 (3, 'Cackie ', 'Jhan', 'Male', 999, '2018-01-10', 'China', 98412516, 'cackie@gmail.com', '$2y$11$HBAQXdQvnX9/y7VKtl22L.m5G.vPpsxLjK3KVsyFogAQv1u7R09uy', 1, '0', 0),
 (4, 'Cackie ', 'Jhan', 'Male', 999, '2018-01-10', 'China', 98412516, 'cackie@gmail.com', '$2y$11$VybUD8O/m2EM.88wnb1yzeVSaSIWGpY3vhW2BGoBum9QoUOoBlDTW', 1, '0', 0),
 (5, 'Blackie ', 'Chan', 'Female', 111, '2018-01-17', 'Taiwan', 67215261, 'blackie@gmail.com', '$2y$11$N/uJtpDqyWkm0LkmPV5lveegDE1WdR3UElPcypO1Lq02rkeRqxJXy', 1, '0', 0),
@@ -98,8 +100,8 @@ CREATE TABLE `retailers` (
   `address` varchar(100) NOT NULL,
   `description` varchar(200) NOT NULL,
   `active` int(1) NOT NULL,
-  `captcha_verify` int(10) NOT NULL,
-  `otp_verify` int(10) NOT NULL
+  `captcha_verify` varchar(8) NOT NULL,
+  `otp_verify` int(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -107,12 +109,12 @@ CREATE TABLE `retailers` (
 --
 
 INSERT INTO `retailers` (`retails_ID`, `username`, `hash`, `company_Name`, `e-mail`, `phone_Number`, `address`, `description`, `active`, `captcha_verify`, `otp_verify`) VALUES
-(1, 'drugdealer', '$2y$11$0CzcR5h0f5Ql/dbJIe7xLO2aDoNNV3JI/4YEhGXwqw.7U4bIr1Q/C', 'Legal Drugs', 'keith_teo@outlook.sg', 84206969, 'Backstreet Boys Avenue 2', 'We totally sell legal drugs', 0, 6727964, 2212804),
-(6, 'CoolMeister', '$2y$11$Jct5Yks34hCOpSJoQakFouJVb3vmxgUgCE6/zmZdoQpXcK2d5AzOK', 'Cool Hats Co.', 'coomeister69@gmail.com', 81882341, 'Paya Lebar MRT Station', 'We sell cool hats to people.', 0, 0, 1),
-(7, 'Alfrodo', '$2y$11$AHCxHbbC6PXzg8rVdoTNBeFwN2nmjZeeCbkXM9tToNJkIf1GRFKgK', 'Gun Shop', 's0m3gay@cupid.com', 99994444, 'Simei MRT Station', ' We sell Banks', 0, 0, 1),
-(8, 'R', '$2y$11$K41CQFjn1sE8wjIAFBydt.viAqNNUtmCzRnwYNGARtlHrurv9Drp6', 'RR', 'R@R.c', 12345678, '2 R A', 'qwertyu', 0, 0, 1),
-(9, 'weifeng', '$2y$11$dDEK2ASfr53DLRi2EmKWxuGwHOBJHviG7Ovz/yAKj9fS9ymaM6ivO', 'Wei Feng and Co.', 'honzitminion@hotmail.com', 93322211, 'Hougangragoon ave 30', 'A small business', 0, 0, 1),
-(10, 'ethanheng', '$2y$11$EdQEz4j0ljeguoNIyqO6bu8j50aTFNMvfeTKvP8k/Z/CE0q.zE6Ae', 'Doge Memes Co.', 'ethanheng@outlook.com', 93321554, 'Serangoon Avenue 5', 'We sell Doge.', 0, 0, 1);
+(1, 'drugdealer', '$2y$11$0CzcR5h0f5Ql/dbJIe7xLO2aDoNNV3JI/4YEhGXwqw.7U4bIr1Q/C', 'Legal Drugs', 'idontsellweed@ido.com', 84206969, 'Backstreet Boys Avenue 2', 'We totally sell legal drugs', 0, '', 0),
+(6, 'CoolMeister', '$2y$11$Jct5Yks34hCOpSJoQakFouJVb3vmxgUgCE6/zmZdoQpXcK2d5AzOK', 'Cool Hats Co.', 'coomeister69@gmail.com', 81882341, 'Paya Lebar MRT Station', 'We sell cool hats to people.', 0, '', 0),
+(7, 'Alfrodo', '$2y$11$AHCxHbbC6PXzg8rVdoTNBeFwN2nmjZeeCbkXM9tToNJkIf1GRFKgK', 'Gun Shop', 's0m3gay@cupid.com', 99994444, 'Simei MRT Station', ' We sell Banks', 0, '', 0),
+(8, 'R', '$2y$11$K41CQFjn1sE8wjIAFBydt.viAqNNUtmCzRnwYNGARtlHrurv9Drp6', 'RR', 'R@R.c', 12345678, '2 R A', 'qwertyu', 0, '', 0),
+(9, 'weifeng', '$2y$11$dDEK2ASfr53DLRi2EmKWxuGwHOBJHviG7Ovz/yAKj9fS9ymaM6ivO', 'Wei Feng and Co.', 'honzitminion@hotmail.com', 93322211, 'Hougangragoon ave 30', 'A small business', 0, '5138836', 4463841),
+(10, 'ethanheng', '$2y$11$EdQEz4j0ljeguoNIyqO6bu8j50aTFNMvfeTKvP8k/Z/CE0q.zE6Ae', 'Doge Memes Co.', 'ethanheng@outlook.com', 93321554, 'Serangoon Avenue 5', 'We sell Doge.', 0, '', 0);
 
 -- --------------------------------------------------------
 
@@ -136,10 +138,11 @@ CREATE TABLE `retail_items` (
 --
 
 INSERT INTO `retail_items` (`item_ID`, `item_Name`, `item_Description`, `item_Cost`, `retails_ID`, `stock`, `image`, `active`) VALUES
-(2, 'Iman', 'Iman is a fake', '5.00', 1, 0, './images/i_have_no_life.jpg', 0),
-(3, 'Rich Chocolate', 'This is real authentic chocolate.', '25.00', 1, 300, './images/chocolate-plain.png', 0),
-(4, 'Tupperware Containers', 'Waterproof. 500cm^3', '5.00', 1, 500, './images/280-tupperware-original-imae7w8hrg9uvyzw.jpeg', 0),
-(5, 'Red Balloons', 'it floats.', '0.50', 1, 145, './images/174788.jpg', 0);
+(2, 'Iman', 'Iman is a fake', '5.00', 1, 0, '/StoreFront/Retailers/images/i_have_no_life.jpg', 1),
+(3, 'Rich Chocolate', 'This is real authentic chocolate.', '25.00', 1, 300, '/StoreFront/Retailers/images/chocolate-plain.png', 1),
+(4, 'Tupperware Containers', 'Waterproof. 500cm^3', '5.00', 1, 500, '/StoreFront/Retailers/images/280-tupperware-original-imae7w8hrg9uvyzw.jpeg', 1),
+(5, 'Red Balloons', 'it floats.', '0.50', 1, 145, '/StoreFront/Retailers/images/174788.jpg', 1),
+(6, 'Umaru', 'Umaru is best', '24.00', 9, 300, '/StoreFront/Retailers/images/umaruayy.JPG', 1);
 
 --
 -- Indexes for dumped tables
@@ -191,7 +194,7 @@ ALTER TABLE `retailers`
 -- AUTO_INCREMENT for table `retail_items`
 --
 ALTER TABLE `retail_items`
-  MODIFY `item_ID` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `item_ID` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Constraints for dumped tables
