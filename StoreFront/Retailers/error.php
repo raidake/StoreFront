@@ -14,10 +14,11 @@ session_start();
 if ( isset($_SESSION['message']) AND !empty($_SESSION['message'])):
 	echo $_SESSION['message'];
 else:
-	header("location: RetailerLogin.php");
+	//header("location: RetailerLogin.php");
+	echo "AEFA";
 endif;
 ?>
 </p>
-<a href="login.php"><input type="submit" value="Home"></a>
+<a href="RetailerLogin.php"><input type="submit" value="Home"></a>
 </body>
 </html>

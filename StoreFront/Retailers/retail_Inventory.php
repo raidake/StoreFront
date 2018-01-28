@@ -1,6 +1,7 @@
 <?php
 include_once 'dbconfig.php';
-include_once 'sessionverify.php';
+require_once 'sessionverify.php';
+
 if(isset($_POST["insert"])){
 		$retails_ID=$_POST["retails_ID"];
 		$itemname=$_POST["itemname"];
@@ -109,7 +110,8 @@ tr:hover {background-color:#f5f5f5;}
 		
 		<label><b>Image file:</b></label>
 		<input type="file" name="image" />
-		<input type="hidden" value=<?php echo $_SESSION['retails_ID']; ?> name="retails_ID">
+		<input type="hidden" value="01" name="retails_ID">
+		
 		<button type="submit" name="insert"/>Add Item</button>
 		</div>
 	</form>
@@ -127,8 +129,7 @@ echo "<th>Edit</th>";
 echo "<th>Delete</th>";
 echo "</tr>";
 
-$key =  $_SESSION['retails_ID'];
-$query = "SELECT * FROM retail_items where retails_ID = $key";
+$query = "SELECT * FROM retail_items";
 $crud->dataview($query);
 ?>
 </table>
