@@ -5,7 +5,7 @@ $mysqli = mysqli_connect("localhost","root","","employee");
 if(isset($_POST['submit'])){
 	session_start();
 	$username=$_SESSION['username'];
-	$query="SELECT otp FROM auditor WHERE username='$username'";
+	$query="SELECT otp FROM employee WHERE username='$username'";
 	$result=$mysqli->query($query);
 
 if($result->num_rows > 0){

@@ -1,5 +1,6 @@
 <?php
 include_once 'dbconfig.php';
+require_once 'sessionverify.php';
 
 if(isset($_POST["insert"])){
 		$retails_ID=$_POST["retails_ID"];
