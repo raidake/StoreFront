@@ -1,4 +1,5 @@
 <?php
+require_once("sessionverify.php");
 require_once("Adb.php");
 
 //updates the remarks according to the log ID specified
@@ -29,8 +30,11 @@ if(isset($_GET['operation'])){
 <html>
 <body>
 <ul>
-	<a href="../pdo/homepage.php"><button>Back</button></a> <!-- The [ back ] button to return to homepage-->
-<ul>
+ <!-- The [ back ] button to return to homepage-->
+	<form action="homepage.php" >
+	<input type="submit" value="back">
+	</form>
+ <ul>
 <b><center>Audit Logs</center></b>
 
 <?php

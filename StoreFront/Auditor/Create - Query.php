@@ -2,7 +2,10 @@
 <body>
 <div>
 <ul>
-	<a href="../Pdo/homepage.php"><button>Back</button></a> <!-- The [ back ] button to return to homepage-->
+<!-- The [ back ] button to return to homepage-->
+	<form action="homepage.php" >
+	<input type="submit" value="back">
+	</form>
 <ul>
 	<h1 style="text-align:center"> Remark Creation : </h1> <!-- create a remark for the specific log ID-->
 	<form action="C.php" method="post">
@@ -15,7 +18,7 @@
 <b><center>Audit Logs without remarks</center></b>
 
 <?php
-
+require_once("sessionverify.php");
 require_once("Adb.php");
 //read the logs that have an empty remark
 //this allows the user to see logs that do not have a remark, which allows for creation of remarks

@@ -12,7 +12,7 @@ $user=$result->fetch_assoc();
 	}
 }
 
-$#_SESSION['captchaid'];
-$#_SESSION;
+#_SESSION['captchaid'];
+#_SESSION;
 ?>
 </html>
