@@ -114,6 +114,7 @@ else
 		<!-- Review Made (Customers) -->
 		<label><b>Reviews: </b></label>
 	</div>
+	<a href="/StoreFront/index.php">Go to home</a>
 
 		<a href="logout.php"><input type="submit" name="logout" value="Log Out"></a>
 		<br><br><br><br><br><br><br><br><br><br>
