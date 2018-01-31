@@ -137,7 +137,7 @@ label {
   		</div>
 
   		<div class="layout2">
-  			<form>
+  			<form action="search.php">
   				<center><input type="text" name="search" placeholder="Search"></center>
   			</form>
   		</div>
