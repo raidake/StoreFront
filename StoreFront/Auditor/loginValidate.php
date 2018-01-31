@@ -6,7 +6,7 @@ $mysqli=mysqli_connect("localhost","root","","employee");
 $username = $mysqli->escape_string($_POST['username']);
 $result = $mysqli->query("SELECT * FROM auditor WHERE username='$username'");
 require_once('recaptchalib.php');
-
+session_start();
 if ( $result->num_rows == 0 ) // User doesn't exist
 {
 	$_SESSION['message'] = "User with that username doesn't exist!";

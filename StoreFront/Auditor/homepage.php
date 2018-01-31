@@ -6,6 +6,8 @@
 require_once('sessionverify.php'); 
 ?>
 
+
+
 <h1 style="color:#0000FF; text-align: center">Auditing Page - Audit logs</h1>
 <link rel="stylesheet" type="text/css" href="style.css">
 
