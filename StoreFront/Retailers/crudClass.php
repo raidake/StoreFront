@@ -13,7 +13,7 @@ class crud
 	{
 		try
 		{
-			$stmt = $this->db->prepare("INSERT INTO retail_items(item_Name, item_Description, item_Cost, retails_ID, stock, image) VALUES(:itemname, :desc, :cost, :retails_ID, :stock, :image)");
+			$stmt = $this->db->prepare("INSERT INTO retail_items(item_Name, item_Description, item_Cost, retails_ID, stock, image, active) VALUES(:itemname, :desc, :cost, :retails_ID, :stock, :image, 1)");
 			$stmt->bindparam(":itemname",$itemname);
 			$stmt->bindparam(":stock",$stock);
 			$stmt->bindparam(":cost",$cost);

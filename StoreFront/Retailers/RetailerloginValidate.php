@@ -62,16 +62,15 @@ else // User exists
 		
 		$mysqli->query("UPDATE retailers SET `captcha_verify`='$capid' WHERE username='$username'");
 		
-		/*
 		$email=0;
 		$email=$user['e-mail'];
 		$otpid=mt_rand(1000000,9999999);
 
 		$query=$mysqli->prepare("update retailers set `otp_verify`='$otpid' where username='$username'");
 		$query->execute();
-		if(mail($email, 'Storefront OTP','Your OTP is '.$otpid)){}
-		*/
-		 header("location:retail_Inventory.php");
+		if(mail($email, 'Storefront OTP','Your OTP is '.$otpid)){
+		 header("location: otplogin.php");
+	 }
 
 	}
 	else

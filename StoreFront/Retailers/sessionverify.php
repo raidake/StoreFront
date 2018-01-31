@@ -6,8 +6,8 @@ if(isset($_SESSION['username']) && isset($_SESSION['captchaid'])){
 $username=$_SESSION['username'];
 $result=$con->query("SELECT * from retailers WHERE username='$username'");
 $user=$result->fetch_assoc();
-	if ( $_SESSION['hash']!=$user['hash'] || $_SESSION['captchaid']!=$user['captcha_verify']){
-		$_SESSION['message']="Access denied. Invalid credentials";
+	if ( $_SESSION['hash']!=$user['hash'] || $_SESSION['captchaid'] != $user['captcha_verify'] ){
+		$_SESSION['message']=$user['hash'].$user['captchaid'];
 		header("location:error.php");
 	}
 }

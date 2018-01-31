@@ -121,7 +121,12 @@ document.getElementbyId("date").innerHTML = d.toUTCString();
 
 <div class="layout4">
 	<label>Price: <?php echo $item_Cost ?></label>
-
+	<br>
+	<?php 
+	if(!$_SESSION['accounttype']="retailers")
+	{
+		?>
+	
 	<input type="number" id="qty" value="0" max="<?php echo $stock; ?>" min="0" />
 	<button id="down" onclick="modify_qty(-1)" >-1</button>
 	<button id="up" onclick="modify_qty(1)">+1</button>
@@ -130,8 +135,9 @@ document.getElementbyId("date").innerHTML = d.toUTCString();
 		<input type="hidden" name="item_id" value="<?php echo $item_ID; ?>" />
 		<button type="submit">Buy</button>
 	</form>
-	
-	
+	<?php
+	}
+	?>
 </div>
 
 <div class="layout2">
@@ -139,15 +145,20 @@ document.getElementbyId("date").innerHTML = d.toUTCString();
 </div>
 
 <div class="layout3">
+	<?php
+	if($_SESSION['accounttype']!="retailer")
+	{ ?>
 	<form method="post" >
 		<textarea name="comment" rows="5" cols="50" placeholder="Write your comments down in 200 characters or less..." maxlength="200" required></textarea>
 		<br>
 		<input type="hidden" name="item_id" value="<?php echo $item_ID; ?>" />
-		<input type="hidden" name="user_id" value="1" />
+		<input type="hidden" name="user_id" value=3; />
 		<button type="submit">Submit</button>
 	</form>
-	<br>
+	
 	<?php
+	}
+	echo "<br>";
 	echo "<table border='1'>";
 	echo "<tr>";
 	echo "<th>User</th>";

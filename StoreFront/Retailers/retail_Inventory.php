@@ -1,7 +1,6 @@
 <?php
 include_once 'dbconfig.php';
-require_once 'sessionverify.php';
-
+include_once 'sessionverify.php';
 if(isset($_POST["insert"])){
 		$retails_ID=$_POST["retails_ID"];
 		$itemname=$_POST["itemname"];
@@ -11,8 +10,15 @@ if(isset($_POST["insert"])){
 		$upload_image=$_FILES["image"]["name"];
 		$folder="/xampp/htdocs/StoreFront/Retailers/images/";
 		
+		$verifyimg = getimagesize($_FILES['image']['tmp_name']);
+
+		if($verifyimg['mime'] != 'image/png' && $verifyimg['mime'] != 'image/jpeg' && $verifyimg['mime'] != 'image/bmp' ) {
+		echo "Only images are allowed!";
+		}
+		else{
 		move_uploaded_file($_FILES["image"]["tmp_name"], "$folder".$_FILES["image"]["name"]);
 		$image = "/StoreFront/Retailers/images/".$upload_image;
+		
 		
 		if($crud->createItem($retails_ID,$itemname,$stock,$cost,$desc,$image))
 		{
@@ -22,6 +28,7 @@ if(isset($_POST["insert"])){
 		{
 			echo "<center>Record Failed</center>";
 		}
+	}
 }
 ?>
 
@@ -110,8 +117,7 @@ tr:hover {background-color:#f5f5f5;}
 		
 		<label><b>Image file:</b></label>
 		<input type="file" name="image" />
-		<input type="hidden" value="01" name="retails_ID">
-		
+		<input type="hidden" value=<?php echo $_SESSION['retails_ID']; ?> name="retails_ID">
 		<button type="submit" name="insert"/>Add Item</button>
 		</div>
 	</form>
@@ -129,7 +135,8 @@ echo "<th>Edit</th>";
 echo "<th>Delete</th>";
 echo "</tr>";
 
-$query = "SELECT * FROM retail_items";
+$key =$_SESSION['retails_ID'];
+$query = "SELECT * FROM retail_items where retails_ID = '$key'";
 $crud->dataview($query);
 ?>
 </table>
