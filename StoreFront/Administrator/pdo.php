@@ -69,11 +69,12 @@ while($query->fetch())
 echo "</table>";
  }
  
-  public function update($username, $hash, $fullname, $phonenum, $email, $address, $role)
+  public function update($id, $username, $hash, $fullname, $phonenum, $email, $address, $role)
  {
   try
   {
-   $stmt = $this->db->prepare("update employee set username='$username' , hash='$hash', full_Name='$fullname', phone_Number='$phonenum', email='$email', address='$address', role='$role' where Employee_ID=".$_POST['id']);
+	 
+   $stmt = $this->db->prepare("update employee set username='$username' , hash='$hash', full_Name='$fullname', phone_Number='$phonenum', email='$email', address='$address', role='$role' where employee_id='$id'");
    $stmt->execute();
    return true;
   }

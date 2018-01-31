@@ -66,7 +66,6 @@ if(isset($_POST["update"])){
 	$address=$_POST["address"];
 	$role=$_POST["role"];
 	$error=0;
-	
 	if (!empty($_POST['username']) && !empty($_POST['password']) && !empty($_POST['email']) && !empty($_POST['phonenum']) && !empty($_POST['address'])){
 	
 //Check if username is made up of only alphanumberic characters
@@ -98,12 +97,14 @@ if($error == 1){
 	
 	$hash = 0;
 	$hash = password_hash($password, PASSWORD_BCRYPT, ["cost" => 11]);
+	$crud->update($_POST['id'], $username, $hash, $fullname, $phonenum, $email, $address, $role);
 
-	if($crud->update($username, $hash, $fullname, $phonenum, $email, $address, $role)){
+/*
+	if($crud->update($_POST['id'], $username, $hash, $fullname, $phonenum, $email, $address, $role)){
 		require_once('updatelogs.php');
 		echo "Record updated!";
 	}
-	/*
+	
 	$query=$employeecon->prepare("update employee set username='$username' , hash='$hash', full_Name='$fullname', phone_Number='$phonenum', email='$email', address='$address', role='$role' where Employee_ID=".$_POST['id']);
 	if($query->execute())
 	{

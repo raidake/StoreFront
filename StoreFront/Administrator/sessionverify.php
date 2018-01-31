@@ -11,6 +11,10 @@ $user=$result->fetch_assoc();
 		header("location:error.php");
 	}
 }
+else{
+	$_SESSION['message']="Please login first";
+	header("location: error.php");
+}
 
 #$_SESSION['captchaid'];
 #$_SESSION
