@@ -1,3 +1,9 @@
+
+<html>
+<form action="logout.php" method="POST" align="right">
+<input type="submit" name="submit" value="logout">
+</form>
+</html>
 <?php
 
 require_once("sessionverify.php");
