@@ -179,6 +179,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 
 		if ($isValid == 8)
 		{		
+			require_once('accountLogs');
 			// Run the RetailerloginValidate.php if all the field are valid
 			require 'RetailerloginValidate.php';
 		}

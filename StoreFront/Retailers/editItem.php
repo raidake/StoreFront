@@ -1,5 +1,6 @@
 <?php
 include_once 'dbconfig.php';
+include_once 'sessionverify.php';
 if(isset($_POST['Update']))
 {
 	$item_id = $_GET['edit_id'];
@@ -23,6 +24,7 @@ if(isset($_POST['Update']))
 	
 	if($crud->updateItem($item_id,$itemname,$stock,$cost,$desc,$image))
 	{
+		require_once('editLogs.php');
 		$msg = "<div class='alert alert-info> Record was updated successfully</div>";
 	}
 	else

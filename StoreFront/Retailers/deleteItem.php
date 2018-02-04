@@ -1,10 +1,13 @@
 <?php
 include_once 'dbconfig.php';
-
+include_once 'sessionverify.php';
 if(isset($_POST['delete']))
 {
 	$id = $_GET['delete_id'];
+	$item_name = $_GET['item_name'];
 	$crud->delete($id);
+	$retails_ID =$_SESSION['retails_ID'];
+	require_once('removeItemLogs.php');
 	header("Location: retail_Inventory.php");
 }
 ?>

@@ -78,6 +78,7 @@ else // User exists
 	}
 	else
 	{
+		require_once('LoginFailure.php');
 		$_SESSION['message'] = "You have entered wrong password, try again";
 		echo "Login failed";
 		header("location: error.php");

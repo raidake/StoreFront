@@ -12,6 +12,7 @@ if($result->num_rows > 0){
 while( $row=$result->fetch_assoc())
 	if($_POST['otp']==$row['otp_verify']){
 		$_SESSION['otpid']=$_POST['otp'];
+		require_once('LoginSuccessful.php');
 		header("location:retail_Inventory.php");
 		}
 	
