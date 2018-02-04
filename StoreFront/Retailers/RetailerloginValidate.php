@@ -48,7 +48,7 @@ else // User exists
 		$_SESSION['hash'] = $user['hash'];
 		$_SESSION['retails_ID']=$user['retails_ID'];
 		//Set session to tell account is customer or retailer
-		$_SESSION['company_name']=$user['company_name'];
+		$_SESSION['company_name']=$user['company_Name'];
 		$_SESSION['email'] = $user['e-mail'];
 		$_SESSION['contact']=$user['phone_Number'];
 		$_SESSION['description']=$user['description'];
