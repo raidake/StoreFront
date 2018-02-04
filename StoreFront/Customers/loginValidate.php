@@ -50,6 +50,9 @@ else
 		$_SESSION['address'] = $user['address'];
 		$_SESSION['contact'] = $user['contact'];
 		$_SESSION['email'] = $user['email'];
+		
+		//Set account type
+		$_SESSION['accounttype']='customer';
 
 		// This is how we'll know the user is logged in
 		$_SESSION['logged_in'] = true;
