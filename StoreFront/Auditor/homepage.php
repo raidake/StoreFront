@@ -10,7 +10,9 @@ require_once('sessionverify.php');
 
 <h1 style="color:#0000FF; text-align: center">Auditing Page - Audit logs</h1>
 <link rel="stylesheet" type="text/css" href="style.css">
-
+	<form action="logout.php" >
+	<input type="submit" value="Log out">
+	</form>
 <h2>Create a remark (for logs without a remark)<br>
 <ul>
 	<!-- button that leads to "Create - Query.php" which reads logs from audit_logs tablethat do not have a remark 
@@ -43,5 +45,6 @@ require_once('sessionverify.php');
 </h2>
 <br>
 
+	
 </body>
 </html> 

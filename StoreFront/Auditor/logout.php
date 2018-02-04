@@ -3,16 +3,5 @@
 session_start();
 session_unset();
 session_destroy();
+header('Location:/StoreFront/index.php');
 ?>
-
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Log Out</title>
-</head>
-<body>
-		<h1>Thanks for stopping by on our website!</h1>
-		<p><?= 'You have been logged out!'; ?></p>
-		<a href="/StoreFront/"><input type="submit" value="Log Out"></a>
-</body>
-</html>
