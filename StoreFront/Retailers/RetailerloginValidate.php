@@ -50,6 +50,13 @@ else // User exists
 		//Set session to tell account is customer or retailer
 		$_SESSION['accounttype']='retailer';
 		$_SESSION['email'] = $user['e-mail'];
+		$_SESSION['birthday']=$user['birthday'];
+		$_SESSION['contact']=$user['contact'];
+		$_SESSION['gender']=$user['gender'];
+		$_SESSION['first_Name']=$user['first_Name'];
+		$_SESSION['last_Name'] = $user['last_Name'];
+		$_SESSION['age']=$user['age'];
+		$_SESSION['address']=$user['address'];
 
 		// This is how we'll know the user is logged in
 		
