@@ -22,6 +22,7 @@ if(isset($_POST["insert"])){
 		
 		if($crud->createItem($retails_ID,$itemname,$stock,$cost,$desc,$image))
 		{
+			require_once('addItemLogs.php');
 			echo "<center>Record Sent</center>";
 		}
 		else
