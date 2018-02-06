@@ -53,7 +53,7 @@ else // User exists
 		$_SESSION['contact']=$user['phone_Number'];
 		$_SESSION['description']=$user['description'];
 		$_SESSION['address']=$user['address'];
-
+		$_SESSION['accounttype']='retailer';
 		// This is how we'll know the user is logged in
 		
 		$_SESSION['logged_in'] = true;
