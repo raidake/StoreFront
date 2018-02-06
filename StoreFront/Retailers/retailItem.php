@@ -1,5 +1,8 @@
 <?php
 include_once "dbconfig.php";
+session_start();
+
+
 if(isset($_GET['item_id']))
 {
 	$id = $_GET['item_id'];
@@ -124,8 +127,10 @@ document.getElementbyId("date").innerHTML = d.toUTCString();
 	<label>Price: <?php echo $item_Cost ?></label>
 	<br>
 	<?php 
-	if(!$_SESSION['accounttype']="retailers")
-	{
+	if(isset($_SESSION['accounttype']))
+	{ 
+		if($_SESSION['accounttype']!="retailer")
+		{
 		?>
 	
 	<input type="number" id="qty" value="0" max="<?php echo $stock; ?>" min="0" />
@@ -137,6 +142,7 @@ document.getElementbyId("date").innerHTML = d.toUTCString();
 		<button type="submit">Buy</button>
 	</form>
 	<?php
+		}
 	}
 	?>
 </div>
@@ -147,18 +153,35 @@ document.getElementbyId("date").innerHTML = d.toUTCString();
 
 <div class="layout3">
 	<?php
-	if($_SESSION['accounttype']!="retailer")
-	{ ?>
+	if(isset($_SESSION['accounttype']))
+	{ 
+		if($_SESSION['accounttype'] == 'customer')
+		{
+			?>
 	<form method="post" >
 		<textarea name="comment" rows="5" cols="50" placeholder="Write your comments down in 200 characters or less..." maxlength="200" required></textarea>
 		<br>
 		<input type="hidden" name="item_id" value="<?php echo $item_ID; ?>" />
-		<input type="hidden" name="user_id" value=3; />
+		<input type="hidden" name="user_id" value="<?php echo $_SESSION['user_id']; ?>" />
 		<button type="submit">Submit</button>
 	</form>
 	
 	<?php
+		}
+		else
+		{
+		?>
+		<label>You need to be a customer to comment!</label>
+		<?php
+		}
 	}
+	else
+	{
+		?>
+		<label>You need to login to comment!</label>
+		<?php
+	}
+	
 	echo "<br>";
 	echo "<table border='1'>";
 	echo "<tr>";
