@@ -107,11 +107,6 @@ else
 		<p>Email: <?php echo $email ?></p>
 	</div>
 
-	<div class="layout2">
-		<picture>
-			<img src="https://cimages.prvd.com/is/image/ProvideCommerce/FE_15_CDLD_W1_SQ?$PFCProductImage$" alt="userprofile">
-		</picture>
-	</div>
 
 	<div class="layout3">
 		<!-- Name -->
