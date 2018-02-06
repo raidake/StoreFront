@@ -1,8 +1,7 @@
 <?php
 /*Display user information and some useful messages upon logging in*/
 session_start();
-include_once './Retailers/dbconfig.php';
-
+echo $_SESSION['accounttype'];
 // Check if user is logged in using the session variable
 if ( $_SESSION['logged_in'] != 1 )
 {
@@ -12,17 +11,21 @@ if ( $_SESSION['logged_in'] != 1 )
 }
 else
 {
-	//if($_SESSION['accounttype']=='customer')
-	//{
+	if($_SESSION['accounttype']== 'customer' )
+	{
 		// Assign to variable that is easier to read
-	$name = $_SESSION['name'];
+	$first_Name = $_SESSION['first_Name'];
+	$last_Name = $_SESSION['last_Name'];
 	$gender = $_SESSION['gender'];
 	$age = $_SESSION['age'];
+	$birthday = $_SESSION['birthday'];
 	$address = $_SESSION['address'];
 	$contact = $_SESSION['contact'];
 	$email = $_SESSION['email'];
-	//}
-	/*else if($_SESSION['accounttype']=='retailer')
+
+	$active = $_SESSION['active'];
+	}
+	else if($_SESSION['accounttype']=='retailer')
 	{
 		$email = $_SESSION['email'];
 		$username = $_SESSION['username'];
@@ -30,13 +33,13 @@ else
 		$contact = $_SESSION['contact'];
 		$address = $_SESSION['address'];
 		$description = $_SESSION['description'];
-	}*/
+	}
 }
 ?>
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Welcome <?= $name ?></title>
+	<title>Welcome <?= $first_Name.' '.$last_Name ?></title>
 	<style>
 		header, footer {
     		padding: 1em;
@@ -49,21 +52,25 @@ else
 			width: 100%;
 			border: 0px solid gray;
 		}
-	div.layout3 {
-	display: block;
-	float:left;
-	max-height: 100px;
-	max-width: 200px;
-	padding: 20px;
-}
-
-div.layout4 {
-	display: block;
-	margin-left: 220px;
-	border-left: 1px solid gray;
-	padding: 40px;
-	margin-top: 40px;
-}
+		div.layout2 {
+			float: left;
+			max-width: 160px;
+			margin: 0;
+			padding: 1em;
+		}
+		div.layout3 {
+			margin-left: 200px;
+			border-left: 0px solid gray;
+			border-bottom: 5px solid black;
+			padding: 1em;
+			overflow: hidden;
+		}
+		div.layout4 {
+			margin-left: 200px;
+			border-left: 0px solid gray;
+			padding: 1em;
+			overflow: hidden;
+		}
 		div.layout5 {
 			margin-left: 200px;
 			border-left: 0px solid gray;
@@ -99,8 +106,14 @@ div.layout4 {
 
 		<p>Email: <?php echo $email ?></p>
 	</div>
-	
-	<div class="layout5">
+
+	<div class="layout2">
+		<picture>
+			<img src="https://cimages.prvd.com/is/image/ProvideCommerce/FE_15_CDLD_W1_SQ?$PFCProductImage$" alt="userprofile">
+		</picture>
+	</div>
+
+	<div class="layout3">
 		<!-- Name -->
 		<?php if($_SESSION['accounttype'] == 'retailer')
 		{
@@ -110,121 +123,45 @@ div.layout4 {
 		else
 		{
 		?>
-		<label><b>Name: </b><?php echo $name ?></label>
+		<label><b>Name: </b><?php echo $first_Name.' '.$last_Name; ?></label>
 		<?php
 		}
 		?>
 	</div>
 	<?php if($_SESSION['accounttype'] == 'retailer')
 	{ ?>
-		<div class="layout6">	
+		<div class="layout4">	
 			<!-- Description (Retailers) -->
 			<label><b>Description (Retailers):</b></label><br>
 			<?php echo $description ?>
 		</div>
 	<?php }
+	else
+	{
 	?>
-		<?php
-		
-		$stmt = $DB_con->prepare("select * from retail_items");
-		$stmt->execute();
-		
-		if($stmt->rowCount() > 0)
-		{
-			$array = array();
-			while($row=$stmt->fetch(PDO::FETCH_ASSOC))
-			{
-				array_push($array, $row['item_ID']);
-			}
-			$rand_keys = array_rand($array, 3);
-			for($i = 0; $i < 3; $i++)
-			{
-				$key = $array[$rand_keys[$i]];
-				if(print($row['active']) == 1)
-				{
-					echo "<br>";
-					extract($crud->getID($key));
-					
-					?>
-						<div class="layout3">
-							<img src="<?php echo $image; ?>">
-						</div>
-						<div class="layout4">
-							<label><b>Item Name:</b></label>
-							<?php echo $item_Name; ?></a>
-							<br>
-							<label><b>Item Cost:</b></label>
-							<?php echo $item_Cost; ?>
-							<br>
-							<label><b>Quantity:</b></label>
-							<input id="quantity" type="number" min="1" max="100" value="0">
-							<button onclick="buyFunction()">Buy</button>
-							<br>
-							<label><b>Reviews: </b></label><label id="reviews"></label>
-							<p id="buy"></p>
-						</div>
-					<?php
-						}			
-			}
-						
-		}
+	<div class="layout5">
+		<!-- Review Made (Customers) -->
+		<label><b>Reviews: </b></label>
+	</div>
+	<?php
+	}
+	if ($_SESSION['accounttype'] == 'retailer')
+	{
 		?>
+		<a href="/StoreFront/Retailers/retail_Inventory.php">Go to home</a>
+		<?php 
+	}
+	else
+	{
+		?>
+		<a href="/StoreFront/index.php">Go to home</a>
+		<?php
+	}
+	?>
+	
+
 		<a href="logout.php"><input type="submit" name="logout" value="Log Out"></a>
 		<br><br><br><br><br><br><br><br><br><br>
 		<footer>Copyright &copy; StoreFront.com</footer>
-
-		<script>
-			function buyFunction()
-			{
-				var quantity = document.getElementById("quantity");
-				var quantityNumber = document.getElementById("quantity").value;
-				for (i = 0; i < quantityNumber.length; i++)
-				{
-					if (!quantity.checkValidity())
-				{
-					document.getElementById("buy").innerHTML = quantity.validationMessage;
-				}
-				else
-				{
-					alert("Successfully bought " + quantityNumber + " product!");
-					var reviews = prompt("Do you want to give reviews about the product?");
-					if (reviews != null)
-					{
-						document.getElementById("reviews").innerHTML = reviews;
-					}
-				}
-				}			
-				document.getElementById("quantity").value = 0;
-				/*for (i = 0; i < quantity.length; i++)
-				{
-						if (quantity[i] >= 1)
-						{
-							alert("Successfully bought " + quantity + " product!");
-							var comment = prompt("Do you want to give comment about the product?");
-							if (comment != null)
-							{
-								document.getElementById("buy").innerHTML = comment;
-							}
-						}
-						else if (quantity[i] <= 0)
-						{
-							alert("Please enter a valid value to buy");
-						}
-					document.getElementById("quantity").value = 0;
-				}*/
-				/*for (i = 0; i < quantity.length; i++)
-				{
-					if (quantity[i] <= 0)
-					{
-						document.getElementById("buy").innerHTML = "Please enter a valid value to buy";
-					}
-					else
-					{
-						document.getElementById("buy").innerHTML = "";
-						alert("Successfully bought " + quantity);
-					}
-				}*/
-			}
-		</script>
 </body>
 </html>
