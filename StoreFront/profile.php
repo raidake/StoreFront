@@ -14,15 +14,13 @@ else
 	if($_SESSION['accounttype']== 'customer' )
 	{
 		// Assign to variable that is easier to read
-	$first_Name = $_SESSION['first_Name'];
-	$last_Name = $_SESSION['last_Name'];
 	$gender = $_SESSION['gender'];
 	$age = $_SESSION['age'];
-	$birthday = $_SESSION['birthday'];
 	$address = $_SESSION['address'];
 	$contact = $_SESSION['contact'];
 	$email = $_SESSION['email'];
-
+	$name = $_SESSION['name'];
+	
 	$active = $_SESSION['active'];
 	}
 	else if($_SESSION['accounttype']=='retailer')
@@ -39,7 +37,7 @@ else
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Welcome <?= $first_Name.' '.$last_Name ?></title>
+	<title>Welcome <?= $name ?></title>
 	<style>
 		header, footer {
     		padding: 1em;
@@ -118,7 +116,7 @@ else
 		else
 		{
 		?>
-		<label><b>Name: </b><?php echo $first_Name.' '.$last_Name; ?></label>
+		<label><b>Name: </b><?php echo $name; ?></label>
 		<?php
 		}
 		?>
