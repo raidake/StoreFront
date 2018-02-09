@@ -78,6 +78,7 @@ else // User exists
 	}
 	else
 	{
+		$retails_ID=$_SESSION['retails_ID'];
 		require_once('LoginFailure.php');
 		$_SESSION['message'] = "You have entered wrong password, try again";
 		echo "Login failed";

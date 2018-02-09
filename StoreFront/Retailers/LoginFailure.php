@@ -8,7 +8,7 @@ $timestamp = date("F j, Y, g:i a");
 $date = date("Y-m-d");
 $time = date("H:i:s");
 
-$logging = "Retailer username: $username , failed login at, time: $timestamp"; 
+$logging = "Retailer ID: $retails_ID , failed login at, time: $timestamp"; 
 
 
 if ($logs->createLogs($date,$time,$logging)){  //execute query

@@ -24,6 +24,7 @@ if(isset($_POST['Update']))
 	
 	if($crud->updateItem($item_id,$itemname,$stock,$cost,$desc,$image))
 	{
+		$retails_ID=$_SESSION['retails_ID'];
 		require_once('editLogs.php');
 		$msg = "<div class='alert alert-info> Record was updated successfully</div>";
 	}
