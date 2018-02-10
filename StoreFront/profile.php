@@ -1,7 +1,8 @@
 <?php
 /*Display user information and some useful messages upon logging in*/
 session_start();
-echo $_SESSION['accounttype'];
+include_once 'dbconfig.php';
+
 // Check if user is logged in using the session variable
 if ( $_SESSION['logged_in'] != 1 )
 {
@@ -135,8 +136,21 @@ else
 	<div class="layout5">
 		<!-- Review Made (Customers) -->
 		<label><b>Reviews: </b></label>
+		<table border='1'>
+		<tr>
+		<th>User</th>
+		<th>Comment</th>
+		<th>Date</th>
+		</tr>
 	</div>
 	<?php
+		
+	$userid = $_SESSION['userid'];
+	$query = "SELECT * FROM comments WHERE user_ID = $userid ORDER BY timestamp DESC";
+	$crud->viewComments($query);
+		echo "</table>";
+		echo "<br>";
+		echo "</div>";
 	}
 	if ($_SESSION['accounttype'] == 'retailer')
 	{
