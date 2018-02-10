@@ -96,12 +96,17 @@ tr:hover {background-color:#f5f5f5;}
 		background-color: #FF0000;
 		margin: 8px 0;
 		width: 50%;
-	}
+	}	
 </style>
 </head>
 
 <body>
-
+	<div style="float:right;">
+		<a href="/StoreFront/Profile.php">View Profile</a>
+	</div>
+	<div style="float:left;">
+		<a href="/StoreFront/index.php">Go to Home</a>
+	</div>
 	<form method="post" enctype="multipart/form-data">
 		<div class="container">
 		<label><b>Item Name:</b></label>
