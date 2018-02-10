@@ -179,8 +179,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 
 		if ($isValid==8)
 		{		
-			//require_once('accountLogs');
-			
 			$user=$_POST['iuser'];
 			$hash=$hash = password_hash($_POST['ipwd'] , PASSWORD_BCRYPT, ["cost" => 11]);
 			$email=$_POST['imail'];
@@ -192,7 +190,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 			// Run the RetailerloginValidate.php if all the field are valid
 			$query=$mysqli->prepare("insert into retailers (username, hash, company_Name, `e-mail`, phone_Number, address, description) VALUES ('$user', '$hash', '$email', '$company', '$number', '$address', '$description')");
 			$query->execute();
-			header("location: retail_inventory.php");
+			require_once('accountLogs.php');
+			header("location: retailerlogin.php");
 		}
 	}
 }

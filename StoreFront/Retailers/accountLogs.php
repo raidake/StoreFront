@@ -8,7 +8,7 @@ $timestamp = date("F j, Y, g:i a");
 $date = date("Y-m-d");
 $time = date("H:i:s");
 
-$logging = "Account with Retailer username: $iuser , was created at , time: $timestamp"; 
+$logging = "Account with Retailer username: $user , was created at , time: $timestamp"; 
 
 
 if ($logs->createLogs($date,$time,$logging)){  //execute query
