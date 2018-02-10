@@ -170,7 +170,7 @@ class crud
 				$name = $this->getCustomerID($row['user_ID']);
 				?>
 					<tr>
-					<td><?php print($firstname['name']); ?></td>
+					<td><?php print($name['name']); ?></td>
 					<td><?php print ($row['comment']); ?></td>
 					<td><?php print ($row['timestamp']); ?></td>
 					</tr>

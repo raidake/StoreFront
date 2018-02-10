@@ -16,6 +16,7 @@ if(isset($_POST['comment']))
 	
 	if($crud->addComment($comment,$item_id,$user_id))
 	{ 
+		$user_id=$_SESSION['user_id'];
 		require_once('commentAddLogs.php');
 		echo "Comment successfully sent";
 	}

@@ -8,7 +8,7 @@ $timestamp = date("F j, Y, g:i a");
 $date = date("Y-m-d");
 $time = date("H:i:s");
 
-$logging = "Customer ID: $user_id , added comment - $comment -, time: $timestamp";  
+$logging = "Customer ID: $user_id , bought item ID: $itemid at  , time: $timestamp";  
 
 
 if ($logs->createLogs($date,$time,$logging)){  //execute query

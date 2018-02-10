@@ -1,5 +1,6 @@
 <?php
 include_once 'dbconfig.php';
+session_start();
 if(isset($_POST['item_id']))
 {
 	$id = $_POST['item_id'];
@@ -23,6 +24,9 @@ if(isset($_POST["value"]))
 		$newStock = $stock - $newStock;
 		if ($crud->buyItem($id,$newStock))
 		{
+			$user_id=$_SESSION['user_id'];
+			$itemid=$_POST["item_id"];
+			require_once('buylogs.php');
 			echo "Purchase Successful!";
 			echo "<a href='retail_Inventory.php' style='text-decoration: none' class='button button1'>Return</a>";
 		}
