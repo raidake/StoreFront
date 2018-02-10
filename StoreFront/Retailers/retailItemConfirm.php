@@ -26,9 +26,11 @@ if(isset($_POST["value"]))
 		{
 			$user_id=$_SESSION['user_id'];
 			$itemid=$_POST["item_id"];
-			require_once('buylogs.php');
+			require_once("buylogs.php");
 			echo "Purchase Successful!";
-			echo "<a href='retail_Inventory.php' style='text-decoration: none' class='button button1'>Return</a>";
+			?>
+			<td><a href='retailItem.php?item_id=<?php echo $_POST["item_id"]; ?>'>Return</td></a>
+			<?php
 		}
 	}
 }

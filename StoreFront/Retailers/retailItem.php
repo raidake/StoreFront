@@ -103,6 +103,10 @@ function modify_qty(val) {
 	document.getElementById('value').value = new_qty;
     return new_qty;
 }
+
+$('#qty').change(function() {
+	$('#value').val($(this).val());
+});
 	
 var d = new Date();
 document.getElementbyId("date").innerHTML = d.toUTCString();
@@ -134,14 +138,15 @@ document.getElementbyId("date").innerHTML = d.toUTCString();
 		{
 		?>
 	
-	<input type="number" id="qty" value="0" max="<?php echo $stock; ?>" min="0" />
-	<button id="down" onclick="modify_qty(-1)" >-1</button>
-	<button id="up" onclick="modify_qty(1)">+1</button>
+	
+	
 	<form method="post" action="retailItemConfirm.php">
-		<input type="hidden" id="value" name="value" value="" />
+		<input type="number" name="value" id="qty" value="0" max="<?php echo $stock; ?>" min="0" />
 		<input type="hidden" name="item_id" value="<?php echo $item_ID; ?>" />
 		<button type="submit">Buy</button>
 	</form>
+	<button id="down" onclick="modify_qty(-1)" >-1</button>
+	<button id="up" onclick="modify_qty(1)">+1</button>
 	<?php
 		}
 	}
