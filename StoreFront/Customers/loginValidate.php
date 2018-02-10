@@ -41,7 +41,7 @@ else
 	{
 		// Your code here to handle a successful verification
 		echo "Verification successful";
-
+		$_SESSION['userid'] = $user['user_id'];
 		$_SESSION['name'] = $user['name'];
 		$_SESSION['gender'] = $user['gender'];
 		$_SESSION['age'] = $user['age'];
