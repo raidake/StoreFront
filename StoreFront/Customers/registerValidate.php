@@ -68,7 +68,8 @@ if ($response != null && $response->success)
 		//Generate CAPTCHA session id and update database (unset captcha value is 0)
 		$capid=mt_rand(1000000,9999999);
 		$_SESSION['captchaid']=$capid;
-
+		$name=$_SESSION['name'];
+		require_once('accountLogs.php');
 		$mysqli->query("UPDATE customers SET captcha_verify='$capid' WHERE email='$email'");
 		header("location: /StoreFront/Customers/login.php");
 	}

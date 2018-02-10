@@ -20,7 +20,7 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST' )
         
         $email = $user['email'];
         $hash = $user['hash'];
-        $first_name = $user['first_name'];
+        $name = $user['name'];
 
         // Session message to display on success.php
         $_SESSION['message'] = "<p>Please check your email <span>$email</span>"
@@ -30,7 +30,7 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST' )
         $to      = $email;
         $subject = 'Password Reset Link ( StoreFront )';
         $message_body = '
-        Hello '.$first_name.',
+        Hello '.$name.',
 
         You have requested password reset!
 
@@ -39,7 +39,7 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST' )
         http://localhost/StoreFront/Customers/reset.php?email='.$email.'&hash='.$hash;  
 
         mail($to, $subject, $message_body);
-
+		require_once('resetLogs.php');
         header("location: success.php");
   }
 }

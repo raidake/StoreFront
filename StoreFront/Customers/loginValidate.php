@@ -65,13 +65,15 @@ else
 		$otpid=mt_rand(1000000,9999999);
 		$query=$mysqli->prepare("update customers set otp_verify='$otpid' where email='$email'");
 		$query->execute();
-		if(mail($email, 'Storefront OTP','Your OTP is '.$otpid)){
+		
 		 header("location: otplogin.php");
-	 }
+	 
 		//header("location: profile.php");
 	}
 	else
 	{
+		$user_id=$_SESSION['user_id'];
+		require_once('loginfailure.php');
 		$_SESSION['message'] = "You have entered wrong password, try again";
 		header("location: error.php");
 	}
