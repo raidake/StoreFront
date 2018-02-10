@@ -167,10 +167,10 @@ class crud
 		{
 			while($row=$stmt->fetch(PDO::FETCH_ASSOC))
 			{
-				$firstname = $this->getCustomerID($row['user_ID']);
+				$name = $this->getCustomerID($row['user_ID']);
 				?>
 					<tr>
-					<td><?php print($firstname['first_Name']); ?></td>
+					<td><?php print($firstname['name']); ?></td>
 					<td><?php print ($row['comment']); ?></td>
 					<td><?php print ($row['timestamp']); ?></td>
 					</tr>
