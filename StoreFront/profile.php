@@ -22,7 +22,6 @@ else
 	$email = $_SESSION['email'];
 	$name = $_SESSION['name'];
 	
-	$active = $_SESSION['active'];
 	}
 	else if($_SESSION['accounttype']=='retailer')
 	{
@@ -155,18 +154,14 @@ else
 	if ($_SESSION['accounttype'] == 'retailer')
 	{
 		?>
-		<a href="/StoreFront/Retailers/retail_Inventory.php">Go to home</a>
+		<a href="/StoreFront/Retailers/retail_Inventory.php">Inventory Management</a>
+		<br>
 		<?php 
 	}
-	else
-	{
 		?>
 		<a href="/StoreFront/index.php">Go to home</a>
-		<?php
-	}
-	?>
 	
-
+	<br>
 		<a href="logout.php"><input type="submit" name="logout" value="Log Out"></a>
 		<br><br><br><br><br><br><br><br><br><br>
 		<footer>Copyright &copy; StoreFront.com</footer>

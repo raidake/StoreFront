@@ -1,6 +1,6 @@
 <?php
 include_once './Retailers/dbconfig.php';
-
+session_start();
 ?>
 <!DOCTYPE html>
 <html>
@@ -91,7 +91,14 @@ label {
 	<div class="container">
 	<header>
     <h1><center>StoreFront<center></h1>
+	<div id="profile" style="float:right">
+		<a href="/StoreFront/Profile.php">View Profile</a>
+	</div>
 	</header>
+	<?php
+	 if(!$_SESSION['logged_in'])
+	 {
+	?>
 		<!-- Multi Modal for REGISTER -->
 		<div class="w3-container">
   		<center><button onclick="document.getElementById('id01').style.display='block'" class="w3-button w3-black">Register</button></center>
@@ -135,9 +142,12 @@ label {
       	</div>
   		</div>
   		</div>
-
+	<?php
+	 }
+	?>
   		<div class="layout2">
   			<form action="search.php">
+				<br>
   				<center><input type="text" name="search" placeholder="Search"></center>
   			</form>
   		</div>
@@ -157,7 +167,7 @@ label {
 			for($i = 0; $i < 3; $i++)
 			{
 				$key = $array[$rand_keys[$i]];
-				if(print($row['active']) == 1)
+				if($row['active'] == 1)
 				{
 					echo "<br>";
 					extract($crud->getID($key));
@@ -172,6 +182,15 @@ label {
 							<br>
 							<label><b>Item Cost:</b></label>
 							<?php echo $item_Cost; ?>
+						</div>
+					<?php
+				}
+				else
+				{
+					?>
+						<div class="layout4">
+						<label><b>No Item</b></label>
+						
 						</div>
 					<?php
 				}
