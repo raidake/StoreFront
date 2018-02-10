@@ -137,7 +137,7 @@ else
 		<label><b>Reviews: </b></label>
 		<table border='1'>
 		<tr>
-		<th>User</th>
+		<th>Items</th>
 		<th>Comment</th>
 		<th>Date</th>
 		</tr>

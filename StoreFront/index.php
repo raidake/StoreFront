@@ -163,15 +163,19 @@ label {
 			{
 				array_push($array, $row['item_ID']);
 			}
-			$rand_keys = array_rand($array, 3);
-			for($i = 0; $i < 3; $i++)
+
+			$rand_keys = array_rand($array, $stmt->rowCount());
+			shuffle($rand_keys);
+			$check = 0;
+			foreach($rand_keys as $r)
 			{
-				$key = $array[$rand_keys[$i]];
-				if($row['active'] == 1)
+				$key = $array[$r];
+				extract($crud->getID($key));
+				if($active == 1)
 				{
 					echo "<br>";
 					extract($crud->getID($key));
-					
+					$check++;
 					?>
 						<div class="layout3">
 							<img src="<?php echo $image; ?>">
@@ -185,22 +189,21 @@ label {
 						</div>
 					<?php
 				}
-				else
+				if($check == 3)
 				{
-					?>
-						<div class="layout4">
-						<label><b>No Item</b></label>
-						
-						</div>
-					<?php
+					break;
 				}
-				
-	
 			}
-			
-			
+			if($check == 0)
+			{
+			?>
+				<div class="layout4">
+					<label><b>No items are available. Sorry!</b></label>
+				</div>
+			<?php
+			}
 		}
-		
+
 	?>
 	<br> <br>
 	<footer>Copyright &copy; StoreFront.com</footer>
