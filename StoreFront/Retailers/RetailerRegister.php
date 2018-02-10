@@ -85,7 +85,7 @@ $isValid = 0;
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST')
 {
-	if (isset($_POST['register']))
+	if (isset($_POST['signupbtn']))
 	{
 		/* Validate which fields are not of the correct type. 
 		E.g No number for Name and etc.*/
@@ -177,11 +177,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 			$isValid++;
 		}
 
-		if ($isValid == 8)
+		if ($isValid==8)
 		{		
-			require_once('accountLogs');
+			//require_once('accountLogs');
+			
+			$user=$_POST['iuser'];
+			$hash=$hash = password_hash($_POST['ipwd'] , PASSWORD_BCRYPT, ["cost" => 11]);
+			$email=$_POST['imail'];
+			$company=$_POST['icomp'];
+			$number=$_POST['inumber'];
+			$address=$_POST['iaddr'];
+			$description=$_POST['idesc'];
+			
 			// Run the RetailerloginValidate.php if all the field are valid
-			require 'RetailerloginValidate.php';
+			$query=$mysqli->prepare("insert into retailers (username, hash, company_Name, `e-mail`, phone_Number, address, description) VALUES ('$user', '$hash', '$email', '$company', '$number', '$address', '$description')");
+			$query->execute();
+			header("location: retail_inventory.php");
 		}
 	}
 }
@@ -189,7 +200,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 <body>
 <!--The value attributes is to save the form data 
 if user refresh or enter the wrong data on the page. -->
-<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" autocomplete="off" style="border:1px solid #ccc">
+<form action="" method="post" autocomplete="off" style="border:1px solid #ccc">
 
 <div class="container">
 <label>User Name: </label>
