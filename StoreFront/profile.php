@@ -6,8 +6,8 @@ include_once 'dbconfig.php';
 // Check if user is logged in using the session variable
 if ( $_SESSION['logged_in'] != 1 )
 {
-	echo "You must log in before viewing your profile page!";
-	goto Area1;
+	$_SESSION['message'] = "You must log in before viewing your profile page!";
+	header("location: error.php");
 	
 }
 else
@@ -165,8 +165,5 @@ else
 		<a href="logout.php"><input type="submit" name="logout" value="Log Out"></a>
 		<br><br><br><br><br><br><br><br><br><br>
 		<footer>Copyright &copy; StoreFront.com</footer>
-<?php
-Area1:
-?>
 </body>
 </html>
