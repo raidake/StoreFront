@@ -92,10 +92,13 @@ label {
 	<header>
     <h1><center>StoreFront<center></h1>
 	<div id="profile" style="float:right">
-		<a href="/StoreFront/Profile.php">View Profile</a>
+		<a href="/StoreFront/profile.php">View Profile</a>
 	</div>
 	</header>
 	<?php
+	if(!isset($_SESSION['logged_in'])){
+		$_SESSION['logged_in']=0;
+	}
 	 if(!$_SESSION['logged_in'])
 	 {
 	?>
