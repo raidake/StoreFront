@@ -89,18 +89,6 @@ else
 		<header>
 		<h1><center>StoreFront</center></h1>
 		</header>
-		<p>
-		<?php
-		// Display message about account verfication link only once
-		if ( isset($_SESSION['message']) )
-		{
-			echo $_SESSION['message'];
-
-			// Don't annoy the user with more messages upon page refresh
-			unset( $_SESSION['message'] );
-		}
-		?>
-		</p>
 
 		<p>Email: <?php echo $email ?></p>
 	</div>
