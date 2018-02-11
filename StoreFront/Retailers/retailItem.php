@@ -12,11 +12,10 @@ if(isset($_POST['comment']))
 {
 	$comment = $_POST['comment'];
 	$item_id = $_POST['item_id'];
-	$user_id = $_POST['user_id'];
+	$user_id = $_SESSION['userid'];
 	
 	if($crud->addComment($comment,$item_id,$user_id))
 	{ 
-		$user_id=$_SESSION['user_id'];
 		require_once('commentAddLogs.php');
 		echo "Comment successfully sent";
 	}
@@ -142,7 +141,6 @@ document.getElementbyId("date").innerHTML = d.toUTCString();
 	
 	<form method="post" action="retailItemConfirm.php">
 		<input type="number" name="value" id="qty" value="0" max="<?php echo $stock; ?>" min="0" />
-		<input type="hidden" name="item_id" value="<?php echo $item_ID; ?>" />
 		<button type="submit">Buy</button>
 	</form>
 	<button id="down" onclick="modify_qty(-1)" >-1</button>
