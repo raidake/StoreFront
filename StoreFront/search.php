@@ -50,7 +50,7 @@ while( $row=$result->fetch_assoc())
 {
 	$itemid=$row['item_ID'];
 	echo "<tr>";
-	echo "<td><a href='/StoreFront/retailers/retailItem.php?item_id=".$itemid.">".$row['item_Name']."</a></td>";
+	echo "<td><a href='/StoreFront/retailers/retailItem.php?item_id=$itemid.'>".$row['item_Name']."</a></td>";
 	echo "<td>".$row['item_Description']."</td>";
 	echo "<td>".$row['item_Cost']."</td>";
 	echo "<td>".$row['username']."</td>";
