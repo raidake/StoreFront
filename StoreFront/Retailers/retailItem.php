@@ -141,6 +141,7 @@ document.getElementbyId("date").innerHTML = d.toUTCString();
 	
 	<form method="post" action="retailItemConfirm.php">
 		<input type="number" name="value" id="qty" value="0" max="<?php echo $stock; ?>" min="0" />
+		<input type="hidden" name="item_id" value="<?php echo $item_ID; ?>" />
 		<button type="submit">Buy</button>
 	</form>
 	<button id="down" onclick="modify_qty(-1)" >-1</button>

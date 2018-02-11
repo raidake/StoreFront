@@ -24,7 +24,7 @@ if(isset($_POST["value"]))
 		$newStock = $stock - $newStock;
 		if ($crud->buyItem($id,$newStock))
 		{
-			$user_id=$_SESSION['user_id'];
+			$user_id=$_SESSION['userid'];
 			$itemid=$_POST["item_id"];
 			require_once("buylogs.php");
 			echo "Purchase Successful!";
