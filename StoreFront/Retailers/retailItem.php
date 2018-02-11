@@ -113,6 +113,10 @@ document.getElementbyId("date").innerHTML = d.toUTCString();
 </head>
 <body>
 
+<div style="float:left;">
+		<a href="/StoreFront/index.php">Go to Home</a>
+</div>
+<br>
 <div class="layout1">
 	<img src="<?php echo $image; ?>" width=200 height=200>
 </div>
