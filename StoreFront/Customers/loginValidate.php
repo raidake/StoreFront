@@ -66,8 +66,9 @@ else
 		$query=$mysqli->prepare("update customers set otp_verify='$otpid' where email='$email'");
 		$query->execute();
 		
+	 	if(mail($email, 'Storefront OTP','Your OTP is '.$otpid)){
 		 header("location: otplogin.php");
-	 
+		}
 		//header("location: profile.php");
 	}
 	else
