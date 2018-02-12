@@ -73,7 +73,7 @@ else
 	}
 	else
 	{
-		$user_id=$_SESSION['user_id'];
+		$user_id=$_SESSION['userid'];
 		require_once('loginfailure.php');
 		$_SESSION['message'] = "You have entered wrong password, try again";
 		header("location: error.php");
